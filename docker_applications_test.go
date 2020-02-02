@@ -34,29 +34,29 @@ func TestParse(t *testing.T) {
 	}
 
 	tests := []struct {
-		name  string
+		name        string
 		application string
-		want  []string
+		want        []string
 	}{
 		{
-			name:  "Basic dependency",
+			name:        "Basic dependency",
 			application: "front",
-			want:  []string{"-f", "dir/docker-compose.yml", "-f", "dir/file", "-f", "dir/docker-compose.yml", "up"},
+			want:        []string{"-f", "dir/docker-compose.yml", "-f", "dir/file", "-f", "dir/docker-compose.yml", "up"},
 		},
 		{
-			name:  "Circular dependency",
+			name:        "Circular dependency",
 			application: "circular",
-			want:  []string{"-f", "dir/docker-compose.yml", "up"},
+			want:        []string{"-f", "dir/docker-compose.yml", "up"},
 		},
 		{
-			name:  "Undefined Application",
+			name:        "Undefined Application",
 			application: "undefined",
-			want:  nil,
+			want:        nil,
 		},
 		{
-			name:  "Undefined directory in Application",
+			name:        "Undefined directory in Application",
 			application: "nodir",
-			want:  nil,
+			want:        nil,
 		},
 	}
 

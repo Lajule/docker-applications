@@ -11,10 +11,6 @@ import (
 	"strings"
 )
 
-const DockerComposeBin = "docker-compose"
-
-const DockerComposeCfgFile = "docker-compose.yml"
-
 type Application struct {
 	File      string
 	Dir       string
@@ -22,8 +18,8 @@ type Application struct {
 }
 
 type Config struct {
-	Version string
-	Applications  map[string]Application
+	Version      string
+	Applications map[string]Application
 }
 
 func Execute(opts []string, config Config) error {
@@ -32,9 +28,9 @@ func Execute(opts []string, config Config) error {
 		return err
 	}
 
-	log.Infof("%s %s", DockerComposeBin, strings.Join(args, " "))
+	log.Infof("docker-compose %s", strings.Join(args, " "))
 
-	cmd := exec.Command(DockerComposeBin, args...)
+	cmd := exec.Command("docker-compose", args...)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 
@@ -63,7 +59,7 @@ func (c *Config) toArgs(application string, alreadyInArgs []string) ([]string, e
 
 	file := os.ExpandEnv(configApplication.File)
 	if file == "" {
-		file = DockerComposeCfgFile
+		file = "docker-compose.yml"
 	}
 
 	var args []string
