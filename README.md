@@ -1,5 +1,7 @@
 # docker-applications
 
+[![CircleCI](https://circleci.com/gh/Lajule/docker-applications/tree/master.svg?style=svg&circle-token=3bb0c1914c37e942e3b5597f4789cac8943c67e2)](https://circleci.com/gh/Lajule/docker-applications/tree/master)
+
 Run docker-compose commands on multiple apps.
 
 ## Usage
