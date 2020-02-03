@@ -1,8 +1,20 @@
 # docker-applications
 
+Run docker-compose commands on multiple apps.
+
 [![CircleCI](https://circleci.com/gh/Lajule/docker-applications/tree/master.svg?style=svg&circle-token=3bb0c1914c37e942e3b5597f4789cac8943c67e2)](https://circleci.com/gh/Lajule/docker-applications/tree/master)
 
-Run docker-compose commands on multiple apps.
+Don't write this anymore :
+
+```sh
+docker-compose -f $HOME/front/docker-compose.yml -f $HOME/api/api.yml -f /varnish/docker-compose.yml up -d --build
+```
+
+Instead write :
+
+```sh
+docker-applications front up -d --build
+```
 
 ## Usage
 
