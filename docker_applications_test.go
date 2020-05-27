@@ -1,35 +1,36 @@
-package docker_applications
+package docker_applications_test
 
 import (
+	"github.com/Lajule/docker-applications"
 	"reflect"
 	"testing"
 )
 
 func TestParse(t *testing.T) {
-	config := Config{
+	config := docker_applications.Config{
 		Version: "1",
-		Applications: map[string]Application{
-			"front": Application{
+		Applications: map[string]docker_applications.Application{
+			"front": docker_applications.Application{
 				Dir: "dir",
 				DependsOn: []string{
 					"api",
 					"varnish",
 				},
 			},
-			"api": Application{
+			"api": docker_applications.Application{
 				Dir:  "dir",
 				File: "file",
 			},
-			"varnish": Application{
+			"varnish": docker_applications.Application{
 				Dir: "dir",
 			},
-			"circular": Application{
+			"circular": docker_applications.Application{
 				Dir: "dir",
 				DependsOn: []string{
 					"circular",
 				},
 			},
-			"nodir": Application{},
+			"nodir": docker_applications.Application{},
 		},
 	}
 
@@ -62,7 +63,7 @@ func TestParse(t *testing.T) {
 
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
-			got, err := config.parse(tc.application, []string{"up"})
+			got, err := config.Parse(tc.application, []string{"up"})
 			if tc.want == nil {
 				if err == nil {
 					t.Errorf("Parse() = (%#v, %v), want (nil, err)", got, err)

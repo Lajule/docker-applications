@@ -23,7 +23,7 @@ type Config struct {
 }
 
 func Execute(opts []string, config Config) error {
-	args, err := config.parse(funk.Head(opts).(string), funk.Tail(opts).([]string))
+	args, err := config.Parse(funk.Head(opts).(string), funk.Tail(opts).([]string))
 	if err != nil {
 		return err
 	}
@@ -37,7 +37,7 @@ func Execute(opts []string, config Config) error {
 	return cmd.Run()
 }
 
-func (c *Config) parse(application string, opts []string) ([]string, error) {
+func (c *Config) Parse(application string, opts []string) ([]string, error) {
 	args, err := c.toArgs(application, []string{})
 	if err != nil {
 		return nil, err
