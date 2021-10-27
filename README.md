@@ -47,8 +47,6 @@ applications:
   api:
     dir: ${HOME}/api
     file: api.yml
-    depends_on:
-      - api
 
   varnish:
     dir: /varnish
